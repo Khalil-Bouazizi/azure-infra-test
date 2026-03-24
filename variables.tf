@@ -79,21 +79,3 @@ variable "vm_size" {
   type        = string
   default     = "Standard_B1s"
 }
-
-variable "tfstate_storage_account_name" {
-  description = "Optional globally unique Azure Storage account name for Terraform state (3-24 lowercase alphanumeric)."
-  type        = string
-  default     = null
-}
-
-variable "tfstate_container_name" {
-  description = "Blob container name for Terraform state"
-  type        = string
-  default     = "tfstate"
-}
-
-variable "tfstate_key" {
-  description = "Blob object key for Terraform state"
-  type        = string
-  default     = "hubspoke.terraform.tfstate"
-}

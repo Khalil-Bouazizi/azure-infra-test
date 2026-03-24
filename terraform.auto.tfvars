@@ -21,10 +21,3 @@ admin_ssh_public_key_path = "C:/Users/khalil/.ssh/terraform-azure-hubspoke.pub"
 hub_ssh_source_cidr  = "0.0.0.0/0"
 
 vm_size              = "Standard_B1s"
-
-# Optional: set a globally unique name to avoid storage account naming collisions.
-# Must be 3-24 chars, lowercase letters and numbers only.
-tfstate_storage_account_name = "demoitfstate"
-
-tfstate_container_name = "tfstate"
-tfstate_key            = "hubspoke.terraform.tfstate"

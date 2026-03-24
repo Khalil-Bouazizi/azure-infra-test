@@ -4,28 +4,11 @@ locals {
   spoke_vnet_name   = "vnet-${var.prefix}-spoke"
   hub_subnet_name   = "snet-${var.prefix}-hub"
   spoke_subnet_name = "snet-${var.prefix}-spoke"
-  tfstate_sa_name   = var.tfstate_storage_account_name != null && trimspace(var.tfstate_storage_account_name) != "" ? lower(var.tfstate_storage_account_name) : substr("${replace(lower(var.prefix), "/[^a-z0-9]/", "")}tfstate", 0, 24)
 }
 
 resource "azurerm_resource_group" "main" {
   name     = local.rg_name
   location = var.location
-}
-
-resource "azurerm_storage_account" "tfstate" {
-  name                            = local.tfstate_sa_name
-  resource_group_name             = azurerm_resource_group.main.name
-  location                        = azurerm_resource_group.main.location
-  account_tier                    = "Standard"
-  account_replication_type        = "LRS"
-  min_tls_version                 = "TLS1_2"
-  allow_nested_items_to_be_public = false
-}
-
-resource "azurerm_storage_container" "tfstate" {
-  name                  = var.tfstate_container_name
-  storage_account_id    = azurerm_storage_account.tfstate.id
-  container_access_type = "private"
 }
 
 resource "azurerm_network_security_group" "hub" {
